@@ -1,6 +1,6 @@
 spring:
   application:
-    name: Security With Spring Boot 2.1
+    name: Spring Security With Spring Boot 2.1
   datasource:
     url: jdbc:mysql://localhost:3306/test_db?sslMode=disabled&allowPublicKeyRetrieval=true&serverTimezone=Asia/Tokyo
     username: test_user
@@ -33,7 +33,7 @@ server:
   servlet:
     context-path: /app
     session:
-      timeout: 5m
+      timeout: 30m
   ssl:
     enabled: true
     key-store: classpath:server20191004.p12
