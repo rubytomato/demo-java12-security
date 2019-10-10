@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ja"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{_layout/layout}">
+<head>
+    <title th:text="#{user.list.title}">user list</title>
+</head>
+<body>
+<div layout:fragment="content" th:remove="tag" id="app">
+    <!--Contents-->
+    <nav class="navbar navbar-light indigo darken-1 my-2">
+        <span class="navbar-brand white-text">User List</span>
+    </nav>
+    <div class="row justify-content-center">
+        <div class="col-lg col-sm">
+            <h5>user list</h5>
+        </div>
+    </div>
+    <!--Contents-->
+</div>
+</body>
+</html>

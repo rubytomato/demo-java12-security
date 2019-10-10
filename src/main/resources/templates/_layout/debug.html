@@ -1,0 +1,73 @@
+<html lang="ja" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<div th:fragment="debug" class="row justify-content-center">
+    <div class="col-lg-6 col-sm-6">
+        <div class="table-responsive text-nowrap">
+            <h5>authorization</h5>
+            <table class="table">
+                <tbody>
+                <tr>
+                    <th scope="row">Anonymous</th>
+                    <th:block th:switch="${#authorization.expression('isAnonymous()')}">
+                        <td th:case="${true}"><span class="badge badge-info">yes</span></td>
+                        <td th:case="${false}">no</td>
+                    </th:block>
+                </tr>
+                <tr>
+                    <th>Authenticated</th>
+                    <th:block th:switch="${#authorization.expression('isAuthenticated()')}">
+                        <td th:case="${true}"><span class="badge badge-info">yes</span></td>
+                        <td th:case="${false}">no</td>
+                    </th:block>
+                </tr>
+                <tr>
+                    <th>FullyAuthenticated</th>
+                    <th:block th:switch="${#authorization.expression('isFullyAuthenticated()')}">
+                        <td th:case="${true}"><span class="badge badge-info">yes</span></td>
+                        <td th:case="${false}">no</td>
+                    </th:block>
+                </tr>
+                <tr>
+                    <th>RememberMe</th>
+                    <th:block th:switch="${#authorization.expression('isRememberMe()')}">
+                        <td th:case="${true}"><span class="badge badge-info">yes</span></td>
+                        <td th:case="${false}">no</td>
+                    </th:block>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-lg-6 col-sm-6">
+        <div class="table-responsive text-nowrap">
+            <h5>session</h5>
+            <table class="table">
+                <tbody>
+                <tr>
+                    <th scope="row">RequestedSessionIdFromCookie</th>
+                    <th:block th:switch="${#request.isRequestedSessionIdFromCookie()}">
+                        <td th:case="${true}"><span class="badge badge-info">yes</span></td>
+                        <td th:case="${false}">no</td>
+                    </th:block>
+                </tr>
+                <tr>
+                    <th>RequestedSessionIdFromURL</th>
+                    <th:block th:switch="${#request.isRequestedSessionIdFromURL()}">
+                        <td th:case="${true}"><span class="badge badge-info">yes</span></td>
+                        <td th:case="${false}">no</td>
+                    </th:block>
+                </tr>
+                <tr>
+                    <th>RequestedSessionIdValid</th>
+                    <th:block th:switch="${#request.isRequestedSessionIdValid()}">
+                        <td th:case="${true}"><span class="badge badge-info">yes</span></td>
+                        <td th:case="${false}">no</td>
+                    </th:block>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+</html>

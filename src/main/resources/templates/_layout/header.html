@@ -1,0 +1,60 @@
+<html lang="ja" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<header th:fragment="header" class="mb-1">
+<nav class="navbar navbar-expand-lg navbar-dark indigo">
+    <!-- Navbar brand -->
+    <a class="navbar-brand" href="/app" th:href="@{/}">
+        <img src="/app/images/logo.jpg" th:src="@{/images/logo.jpg}" height="30" alt="app logo">
+    </a>
+    <!-- Collapse button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+            aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="basicExampleNav">
+        <!-- Links -->
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item" th:classappend="${#strings.endsWith(#request.getRequestURI(),'/menu') ? 'active' : ''}">
+                <a class="nav-link" href="/app/menu" th:href="@{/menu}">Menu</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuAccount" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false" th:classappend="${#authorization.expression('!isAuthenticated()') ? 'disabled' : ''}">Account</a>
+                <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuAccount">
+                    <a href="/app/account/change/password" th:href="@{/account/change/password}" class="dropdown-item">Change password</a>
+                    <a href="/app/account/change/role" th:href="@{/account/change/role}" class="dropdown-item">Change role</a>
+                    <a href="/app/account/change/profile" th:href="@{/account/change/profile}" class="dropdown-item">Change profile</a>
+                    <a href="/app/account/change/delete" th:href="@{/account/delete}" class="dropdown-item">Delete</a>
+                </div>
+            </li>
+            <!-- Dropdown -->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuContents" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false" th:classappend="${#authorization.expression('!isAuthenticated()') ? 'disabled' : ''}">Contents</a>
+                <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuContents">
+                    <a href="/app/memo" th:href="@{/memo}" class="dropdown-item">Memo</a>
+                    <a href="/app/user" th:href="@{/user}" class="dropdown-item">User</a>
+                    <a href="/app/admin" th:href="@{/admin}" class="dropdown-item">Admin</a>
+                </div>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <th:block sec:authorize="isAuthenticated()">
+                    <a class="btn btn-outline-white" href="/app/signout" th:href="@{/signout}">Sign out</a>
+                </th:block>
+                <th:block sec:authorize="!isAuthenticated()">
+                    <a class="btn btn-outline-white" href="/app/signup" th:href="@{/signup}">Sign up</a>
+                </th:block>
+            </li>
+            <li class="nav-item avatar" th:if="${#authorization.expression('isAuthenticated()') && #authentication.principal.user.avatarImageBase64Encode.length() > 0}">
+                <a class="nav-link p-0" href="#">
+                    <img th:src="|data:image/jpeg;base64,${#authentication.principal.user.avatarImageBase64Encode}|" class="rounded-circle z-depth-0" alt="avatar image" height="45">
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!-- Collapsible content -->
+</nav>
+</header>
+</html>

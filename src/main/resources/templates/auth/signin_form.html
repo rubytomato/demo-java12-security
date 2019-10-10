@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ja"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{_layout/simple_layout}">
+<head>
+    <title th:text="#{auth.signin.form.title}">sign in</title>
+</head>
+<body>
+<div layout:fragment="content" th:remove="tag" id="app">
+    <div class="row justify-content-center" th:if="${param['error'] != null && session['SPRING_SECURITY_LAST_EXCEPTION'] != null}">
+        <div class="col-lg-8 col-sm-12">
+            <div class="alert alert-warning" role="alert">
+                <h5 class="alert-heading">認証に失敗しました</h5>
+                <p class="mb-1" th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}">message</p>
+            </div>
+        </div>
+    </div>
+
+    <!--Contents-->
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-sm-12">
+            <div class="card">
+                <h5 class="card-header indigo lighten-1 white-text text-center py-4">
+                    <strong>Sign in</strong>
+                </h5>
+                <div class="card-body px-lg-4 pt-0">
+                    <form class="text-center" action="/app/login" th:action="@{/login}" method="post">
+                        <div class="md-form">
+                            <input type="text" id="email" name="email" class="form-control">
+                            <label for="email">E-mail</label>
+                        </div>
+                        <div class="md-form">
+                            <input type="password" id="password" name="password" class="form-control">
+                            <label for="password">Password</label>
+                        </div>
+                        <div class="d-flex justify-content-around">
+                            <div>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" id="remember-me" name="remember-me" value="on" class="custom-control-input">
+                                    <label for="remember-me" class="custom-control-label">Remember me</label>
+                                </div>
+                            </div>
+                            <div>
+                                <p>Not a member? <a href="/app/signup" th:href="@{/signup}">Register</a></p>
+                            </div>
+                        </div>
+                        <button class="btn indigo accent-4 text-white btn-block my-4" type="submit">Sign in</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Contents-->
+
+    <div th:replace="_layout/components::home"></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ja"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{_layout/layout}">
+<head>
+    <style>
+        .md-v-line {
+            position: absolute;
+            border-left: 1px solid rgba(0,0,0,.125);
+            height: 50px;
+            top: 0px;
+            left: 54px;
+        }
+    </style>
+    <title th:text="#{menu.title}">menu</title>
+</head>
+<body>
+<div layout:fragment="content" th:remove="tag" id="app">
+    <!--Contents-->
+    <div class="row justify-content-center">
+        <div class="col-lg-4 col-sm-4">
+            <h5>auth</h5>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <div class="md-v-line"></div>
+                    <a href="#" th:href="@{/signup}"><i class="far fa-user mr-4"></i>sign up</a>
+                </li>
+                <li class="list-group-item">
+                    <div class="md-v-line"></div>
+                    <a href="#" th:href="@{/signin}"><i class="fas fa-sign-in-alt mr-4"></i>sign in</a>
+                </li>
+                <li class="list-group-item">
+                    <div class="md-v-line"></div>
+                    <a href="#" th:href="@{/signout}"><i class="fas fa-sign-out-alt mr-4"></i>sign out</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-lg-4 col-sm-4">
+            <h5>account</h5>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <div class="md-v-line"></div>
+                    <a href="#" th:href="@{/account/change/password}"><i class="fas fa-key mr-4"></i>change password</a>
+                </li>
+                <li class="list-group-item">
+                    <div class="md-v-line"></div>
+                    <a href="#" th:href="@{/account/change/role}"><i class="fas fa-user-tag mr-4"></i>change role</a>
+                </li>
+                <li class="list-group-item">
+                    <div class="md-v-line"></div>
+                    <a href="#" th:href="@{/account/change/profile}"><i class="fas fa-address-card mr-4"></i>change profile</a>
+                </li>
+                <li class="list-group-item">
+                    <div class="md-v-line"></div>
+                    <a href="#" th:href="@{/account/delete}"><i class="fas fa-user-alt-slash mr-4"></i>delete</a>
+                </li>
+                <li class="list-group-item">
+                    <div class="md-v-line"></div>
+                    <a href="#" th:href="@{/account/avatar}"><i class="fas fa-user-circle mr-4"></i>avatar image</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-lg-4 col-sm-4">
+            <h5>contents</h5>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <div class="md-v-line"></div>
+                    <a href="#" th:href="@{/memo}"><i class="fas fa-star mr-4"></i>memo</a>
+                </li>
+                <li class="list-group-item">
+                    <div class="md-v-line"></div>
+                    <a href="#" th:href="@{/memo/list}"><i class="fas fa-star mr-4"></i>memo list</a>
+                </li>
+                <li class="list-group-item">
+                    <div class="md-v-line"></div>
+                    <a href="#" th:href="@{/user}"><i class="fas fa-star mr-4"></i>user</a>
+                </li>
+                <li class="list-group-item">
+                    <div class="md-v-line"></div>
+                    <a href="#" th:href="@{/user/list}"><i class="fas fa-star mr-4"></i>user list</a>
+                </li>
+                <li class="list-group-item">
+                    <div class="md-v-line"></div>
+                    <a href="#" th:href="@{/admin}"><i class="fas fa-star mr-4"></i>admin</a>
+                </li>
+                <li class="list-group-item">
+                    <div class="md-v-line"></div>
+                    <a href="#" th:href="@{/admin/list}"><i class="fas fa-star mr-4"></i>admin list</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--Contents-->
+</div>
+</body>
+</html>

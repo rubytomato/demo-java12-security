@@ -1,0 +1,35 @@
+<html lang="ja" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<div th:fragment="home" class="row justify-content-center">
+    <div class="col-lg-8 col-sm-12">
+        <a class="btn btn-outline-primary waves-effect" href="/app" th:href="@{/}"><i class="fas fa-magic mr-1"></i> Home</a>
+    </div>
+</div>
+
+<div th:fragment="table" class="row justify-content-center">
+    <div class="col-lg-8 col-sm-12">
+        <div class="table-responsive text-nowrap">
+            <h5>authenticated user</h5>
+            <table sec:authorize="isAuthenticated()" class="table table-sm">
+                <thead>
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">name</th>
+                    <th scope="col">email</th>
+                    <th scope="col">role</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th scope="row" sec:authentication="principal.user.id"></th>
+                    <td sec:authentication="principal.user.name"></td>
+                    <td sec:authentication="principal.user.email"></td>
+                    <td sec:authentication="principal.authorities"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+</html>

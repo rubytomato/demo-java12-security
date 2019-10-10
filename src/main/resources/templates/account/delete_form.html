@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{_layout/simple_layout}">
+<head>
+    <title th:text="#{auth.delete.form.title}">delete</title>
+</head>
+<body>
+<div layout:fragment="content" th:remove="tag" id="app">
+    <div class="row justify-content-center" th:if="${FORM_ERROR != null}">
+        <div class="col">
+            <div class="alert alert-warning" role="alert">
+                <h5 class="alert-heading">フォームエラーメッセージ</h5>
+                <p class="mb-0" th:text="${FORM_ERROR}">message</p>
+            </div>
+        </div>
+    </div>
+
+    <!--Contents-->
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-sm-12">
+            <div class="card">
+                <h5 class="card-header indigo lighten-1 white-text text-center py-4">
+                    <strong>Delete</strong>
+                </h5>
+                <div class="card-body px-4 pt-0">
+                    <form class="text-center" action="#" th:action="@{/account/delete}" th:object="${deleteForm}" method="post">
+                        <button class="btn indigo accent-4 text-white btn-block my-4" type="submit">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Contents-->
+    <div th:replace="_layout/components::home"></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,58 @@
+spring:
+  application:
+    name: Security With Spring Boot 2.1
+  datasource:
+    url: jdbc:mysql://localhost:3306/test_db?sslMode=disabled&allowPublicKeyRetrieval=true&serverTimezone=Asia/Tokyo
+    username: test_user
+    password: test_user
+    hikari:
+      connection-test-query: select 1
+      connection-timeout: 10000
+      maximum-pool-size: 2
+      minimum-idle: 2
+  jpa:
+    open-in-view: true
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQL8Dialect
+  jackson:
+    serialization:
+      indent-output: true
+      write-dates-as-timestamps: false
+      write-durations-as-timestamps: true
+  messages:
+    basename: i18n/messages
+  http:
+    log-request-details: true
+
+# server
+server:
+  port: 8443
+  servlet:
+    context-path: /app
+    session:
+      timeout: 5m
+  ssl:
+    enabled: true
+    key-store: classpath:server20191004.p12
+    key-store-password: password
+    key-store-type: PKCS12
+    key-alias: server20191004
+
+# logging
+logging.file: ./logs/demo.log
+logging:
+  file:
+    max-size: 50MB
+    max-history: 10
+  level:
+    root: info
+    org.springframework: info
+    org.springframework.web: info
+    org.springframework.security: debug
+    org.hibernate: info
+    org.hibernate.SQL: debug
+    org.hibernate.type.descriptor.sql.BasicBinder: trace
+    com.example.demo: debug

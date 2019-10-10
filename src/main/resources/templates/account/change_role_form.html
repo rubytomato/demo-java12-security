@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{_layout/layout}">
+<head>
+    <title th:text="#{account.change.role.form.title}">change role</title>
+</head>
+<body>
+<div layout:fragment="content" th:remove="tag" id="app">
+    <div class="row justify-content-center" th:if="${FORM_ERROR != null}">
+        <div class="col">
+            <div class="alert alert-warning" role="alert">
+                <h5 class="alert-heading">フォームエラーメッセージ</h5>
+                <p class="mb-0" th:text="${FORM_ERROR}">message</p>
+            </div>
+        </div>
+    </div>
+
+    <div th:replace="_layout/components::table"></div>
+
+    <!--Contents-->
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-sm-12">
+            <div class="card">
+                <h5 class="card-header indigo lighten-1 white-text text-center py-4">
+                    <strong>Change role</strong>
+                </h5>
+                <div class="card-body px-lg-4 pt-0">
+                    <form class="text-center" action="#" th:action="@{/account/change/role}" th:object="${changeRoleForm}" method="post">
+                        <div class="text-left justify-content-start">
+                            <h6>roles</h6>
+                            <div class="custom-control custom-checkbox">
+                                <input id="roles_1" class="custom-control-input" type="checkbox" name="roles" value="ROLE_USER" th:field="*{roles}">
+                                <label for="roles_1" class="custom-control-label">ROLE_USER</label>
+                            </div>
+                            <div class="custom-control custom-checkbox">
+                                <input id="roles_2" class="custom-control-input" type="checkbox" name="roles" value="ROLE_ADMIN" th:field="*{roles}">
+                                <label for="roles_2" class="custom-control-label">ROLE_ADMIN</label>
+                            </div>
+                            <div th:if="${#fields.hasErrors('roles')}" th:errors="*{roles}" class="text-danger">error</div>
+                        </div>
+                        <button class="btn indigo accent-4 text-white btn-block my-4" type="submit">Change role</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Contents-->
+
+    <div th:replace="_layout/components::home"></div>
+</div>
+</body>
+</html>
