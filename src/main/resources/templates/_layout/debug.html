@@ -1,6 +1,78 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <div th:fragment="debug" class="row justify-content-center">
+    <div class="col-lg-6 col-sm6">
+        <div class="table-responsive text-nowrap">
+            <h5>principal</h5>
+            <table class="table">
+                <tbody>
+                <tr>
+                    <th scope="row">name</th>
+                    <td sec:authentication="name">name</td>
+                    <td th:text="${#authentication.name}">name</td>
+                </tr>
+                <th:block sec:authorize="isAuthenticated()">
+                <tr>
+                    <th scope="row">username</th>
+                    <td sec:authentication="principal.username">email address</td>
+                    <td th:text="${#authentication.principal.username}">email address</td>
+                </tr>
+                <tr>
+                    <th scope="row">password</th>
+                    <td sec:authentication="principal.password">password</td>
+                    <td th:text="${#authentication.principal.password}"></td>
+                </tr>
+                <tr>
+                    <th scope="row">authorities</th>
+                    <td sec:authentication="principal.authorities">authorities</td>
+                    <td th:text="${#authentication.principal.authorities}"></td>
+                </tr>
+                <tr>
+                    <th scope="row">enabled</th>
+                    <td sec:authentication="principal.enabled">enabled</td>
+                    <td th:text="${#authentication.principal.enabled}"></td>
+                </tr>
+                </th:block>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-lg-6 col-sm6">
+        <div class="table-responsive text-nowrap">
+            <h5>user</h5>
+            <table class="table">
+                <tbody>
+                <tr>
+                    <th scope="row">name</th>
+                    <td sec:authentication="name">name</td>
+                    <td th:text="${#authentication.name}">name</td>
+                </tr>
+                <th:block sec:authorize="isAuthenticated()">
+                <tr>
+                    <th scope="row">id</th>
+                    <td sec:authentication="principal.user.id">id</td>
+                    <td th:text="${#authentication.principal.user.id}">id</td>
+                </tr>
+                <tr>
+                    <th scope="row">name</th>
+                    <td sec:authentication="principal.user.name">name</td>
+                    <td th:text="${#authentication.principal.user.name}">name</td>
+                </tr>
+                <tr>
+                    <th scope="row">createAt</th>
+                    <td sec:authentication="principal.user.createAt">createAt</td>
+                    <td th:text="${#authentication.principal.user.createAt}">createAt</td>
+                </tr>
+                <tr>
+                    <th scope="row">updateAt</th>
+                    <td sec:authentication="principal.user.updateAt">updateAt</td>
+                    <td th:text="${#authentication.principal.user.updateAt}">updateAt</td>
+                </tr>
+                </th:block>
+                </tbody>
+            </table>
+        </div>
+    </div>
     <div class="col-lg-6 col-sm-6">
         <div class="table-responsive text-nowrap">
             <h5>authorization</h5>
