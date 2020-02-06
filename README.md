@@ -2,9 +2,9 @@
 
 Development environment
 
-* OpenJDK 12.0.2
-* Spring Boot 2.1.9
-* Spring Security 5.1.6
+* OpenJDK 13.0.2
+* Spring Boot 2.2.4
+* Spring Security 5.2.1
 * MySQL 8.0.17
 * Maven 3.6.1
 

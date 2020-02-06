@@ -2,12 +2,17 @@ package com.example.demo.controller.auth;
 
 import com.example.demo.service.AccountService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.web.savedrequest.SavedRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.util.Map;
 
 @Controller
 @Slf4j
@@ -52,8 +57,18 @@ public class AuthController {
   }
 
   @GetMapping(value = "signin")
-  public String signinForm() {
+  public String signinForm(HttpServletRequest req) {
     log.debug("signin form");
+    HttpSession session = req.getSession(false);
+    if (session != null) {
+      SavedRequest savedRequest = (SavedRequest) session.getAttribute("SPRING_SECURITY_SAVED_REQUEST");
+      if (savedRequest != null) {
+        log.debug("redirectUrl:{}", savedRequest.getRedirectUrl());
+        savedRequest.getParameterMap().forEach((k,v) -> {
+          log.debug("key:{} value:{}", k, v);
+        });
+      }
+    }
     return "auth/signin_form";
   }
 

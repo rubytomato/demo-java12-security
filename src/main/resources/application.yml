@@ -1,8 +1,8 @@
 spring:
   application:
-    name: Spring Security With Spring Boot 2.1
+    name: Spring Security With Spring Boot 2.2
   datasource:
-    url: jdbc:mysql://localhost:3306/test_db?sslMode=disabled&allowPublicKeyRetrieval=true&serverTimezone=Asia/Tokyo
+    url: jdbc:mysql://localhost:3306/test_db?allowPublicKeyRetrieval=true&serverTimezone=Asia/Tokyo
     username: test_user
     password: test_user
     hikari:
@@ -42,11 +42,11 @@ server:
     key-alias: server20191004
 
 # logging
-logging.file: ./logs/demo.log
 logging:
   file:
     max-size: 50MB
     max-history: 10
+    name: ./logs/demo.log
   level:
     root: info
     org.springframework: info

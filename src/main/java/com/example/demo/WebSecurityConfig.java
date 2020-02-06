@@ -47,9 +47,27 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   @Override
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
     auth
+        // ### AuthenticationManagerBuilder
         .eraseCredentials(true)
+        // ### DaoAuthenticationConfigurer
         .userDetailsService(simpleUserDetailsService)
-        .passwordEncoder(passwordEncoder);
+        // ### DaoAuthenticationConfigurer
+        .passwordEncoder(passwordEncoder)
+    ;
+
+/*
+    auth
+        // ### InMemoryUserDetailsManagerConfigurer
+        .inMemoryAuthentication()
+        //.passwordEncoder(passwordEncoder)
+        .withUser("user")
+          .password(passwordEncoder.encode("user"))
+        .roles("USER")
+        .and()
+        .withUser("admin")
+          .password(passwordEncoder.encode("admin"))
+          .roles("ADMIN");
+*/
   }
 
   @Override
